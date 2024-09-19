@@ -6,7 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.format("Java version: %s%n", getJavaVersion());
-
         performOneCalculation();
     }
 
@@ -69,14 +68,14 @@ public class Main {
      */
     private static String getOperation() {
 
-        String validOperations = "+-*/%";
+        final String VALID_OPERATIONS = "+-*/%";
         String operation = "";
         boolean waitingForValidOperation = true;
-        System.out.println("Valid operations are " + validOperations);
+        System.out.println("Valid operations are " + VALID_OPERATIONS);
         do {
             System.out.print("What operation do you want to perform?>");
-            operation = kb.nextLine();
-            if (validOperations.contains(operation)) waitingForValidOperation = false;
+            operation = kb.nextLine().substring(0, 1);
+            if (VALID_OPERATIONS.contains(operation)) waitingForValidOperation = false;
             else System.out.println("Invalid choice. Try again.");
 
         } while (waitingForValidOperation);
