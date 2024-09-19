@@ -11,6 +11,7 @@ public class Main {
             performOneCalculation();
             keepCalculating = askYesNoQuestion("Perform another calculation?");
         } while (keepCalculating);
+        System.out.println("Thank you for using my calculator");
     }
 
     /** Ask a yes/no question.
