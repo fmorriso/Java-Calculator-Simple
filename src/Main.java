@@ -11,6 +11,7 @@ public class Main {
             performOneCalculation();
             keepCalculating = askYesNoQuestion("Perform another calculation?");
         } while (keepCalculating);
+        System.out.println("Thank you for using my calculator");
     }
 
     /** Ask a yes/no question.
@@ -19,8 +20,8 @@ public class Main {
      */
     private static boolean askYesNoQuestion(String question) {
         System.out.print(question);
-        String answer = kb.nextLine().substring(0, 1).toLowerCase();
-        return answer.equals("y");
+        String answer = kb.nextLine();
+        return answer.isEmpty() ? false : answer.substring(0,1).equalsIgnoreCase("y");
     }
 
     /**
