@@ -6,7 +6,21 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.format("Java version: %s%n", getJavaVersion());
-        performOneCalculation();
+        boolean keepCalculating = true;
+        do {
+            performOneCalculation();
+            keepCalculating = askYesNoQuestion("Perform another calculation?");
+        } while (keepCalculating);
+    }
+
+    /** Ask a yes/no question.
+     * @param question String containing the question to ask.
+     * @return true if the answer is yes; false otherwise.
+     */
+    private static boolean askYesNoQuestion(String question) {
+        System.out.print(question);
+        String answer = kb.nextLine().substring(0, 1).toLowerCase();
+        return answer.equals("y");
     }
 
     /**
