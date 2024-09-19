@@ -10,6 +10,9 @@ public class Main {
         performOneCalculation();
     }
 
+    /**
+     * Performs a single calculation.
+     */
     private static void performOneCalculation() {
         double a = getNumber("Enter the first number>");
         double b = getNumber("Enter the second number>");
@@ -18,6 +21,12 @@ public class Main {
         System.out.println("result of " + a + " " + operation + " " + b + " = " + result);
     }
 
+    /** Performs the specified operation on the two input numbers.
+     * @param a - the first number
+     * @param b - the second number
+     * @param operation - the desired operation (+, -, *, / or %)
+     * @return double precision result of the operation on the two numbers.
+     */
     private static double performOperation(double a, double b, String operation) {
         if (operation.equals("+")) return a + b;
         else if (operation.equals("-")) return a - b;
@@ -27,6 +36,11 @@ public class Main {
         else return Double.NaN;
     }
 
+    /** Prompts user for a valid number
+     * @param msg - the prompt to be used
+     * @return double precision number
+     * @implNote The user is trapped in this method until they enter a valid number.
+     */
     private static double getNumber(String msg) {
 
         double num = Double.NaN;
@@ -43,6 +57,10 @@ public class Main {
         return num;
     }
 
+    /** Prompts for a valid operation.
+     * @return String containing the operation symbol.
+     * @implNote Valid operations are (+, -, *, / or %)
+     */
     private static String getOperation() {
 
         String validOperations = "+-*/%";
