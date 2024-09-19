@@ -62,15 +62,15 @@ public class Main {
 
         double num = Double.NaN;
         System.out.print(msg);
-        boolean needValidNumber = true;
+        boolean waitingForValidNumber = true;
         do {
             try {
                 num = Double.parseDouble(kb.nextLine());
-                needValidNumber = false;
+                waitingForValidNumber = false;
             } catch (NumberFormatException ex) {
                 System.out.println("That's not a number. Try again.");
             }
-        } while (needValidNumber);
+        } while (waitingForValidNumber);
         return num;
     }
 
