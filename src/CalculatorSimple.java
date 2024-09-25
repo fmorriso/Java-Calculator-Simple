@@ -106,9 +106,10 @@ public class CalculatorSimple
         do {
             System.out.println("Valid operations are " + VALID_OPERATIONS);
             System.out.print("What operation do you want to perform?> ");
-            operation = kb.nextLine().substring(0, 1);
-            if (VALID_OPERATIONS.contains(operation)) waitingForValidOperation = false;
-            else System.out.println("Invalid choice. Try again.");
+            operation = kb.nextLine();
+            if(operation.isEmpty() || !(VALID_OPERATIONS.contains(operation.substring(0,1))) )
+                System.out.println("Invalid choice. Try again.");
+            else waitingForValidOperation = false;
 
         } while (waitingForValidOperation);
         return operation;
