@@ -1,17 +1,29 @@
 import java.util.Scanner;
 
-public class Main {
-
+public class CalculatorSimple
+{
     private static final Scanner kb = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         System.out.format("Java version: %s%n", getJavaVersion());
+
         boolean keepCalculating = true;
         do {
             performOneCalculation();
-            keepCalculating = askYesNoQuestion("Perform another calculation?");
+            keepCalculating = askYesNoQuestion("Perform another calculation? (y/n/si/unhuh)> ");
         } while (keepCalculating);
+
         System.out.println("Thank you for using my calculator");
+    }
+
+    /** get the java version that is running the current program
+     * @return string containing the java version running the current program
+     */
+    private static String getJavaVersion()
+    {
+        Runtime.Version runTimeVersion = Runtime.version();
+        return String.format("%s.%s.%s.%s", runTimeVersion.feature(), runTimeVersion.interim(), runTimeVersion.update(), runTimeVersion.patch());
     }
 
     /** Ask a yes/no question.
@@ -21,15 +33,21 @@ public class Main {
     private static boolean askYesNoQuestion(String question) {
         System.out.print(question);
         String answer = kb.nextLine();
-        return answer.isEmpty() ? false : answer.substring(0,1).equalsIgnoreCase("y");
+        if (answer.isEmpty()) return false;
+        if (answer.substring(0,1).equalsIgnoreCase("y")) return true;
+        if (answer.substring(0,1).equalsIgnoreCase("n")) return false;
+        if (answer.substring(0,2).equalsIgnoreCase("si")) return true;
+        if (answer.substring(0,2).equalsIgnoreCase("un")) return true;
+        return false;
     }
+
 
     /**
      * Performs a single calculation.
      */
     private static void performOneCalculation() {
-        double a = getNumber("Enter the first number>");
-        double b = getNumber("Enter the second number>");
+        double a = getNumber("Enter the first number> ");
+        double b = getNumber("Enter the second number> ");
         String operation = getOperation();
         double result = performOperation(a, b, operation);
         System.out.println("result of " + a + " " + operation + " " + b + " = " + result);
@@ -60,11 +78,10 @@ public class Main {
      * @implNote The user is trapped in this method until they enter a valid number.
      */
     private static double getNumber(String msg) {
-
         double num = Double.NaN;
-        System.out.print(msg);
         boolean waitingForValidNumber = true;
         do {
+            System.out.print(msg);
             try {
                 num = Double.parseDouble(kb.nextLine());
                 waitingForValidNumber = false;
@@ -86,9 +103,9 @@ public class Main {
         final String VALID_OPERATIONS = "+-*/%";
         String operation = "";
         boolean waitingForValidOperation = true;
-        System.out.println("Valid operations are " + VALID_OPERATIONS);
         do {
-            System.out.print("What operation do you want to perform?>");
+            System.out.println("Valid operations are " + VALID_OPERATIONS);
+            System.out.print("What operation do you want to perform?> ");
             operation = kb.nextLine().substring(0, 1);
             if (VALID_OPERATIONS.contains(operation)) waitingForValidOperation = false;
             else System.out.println("Invalid choice. Try again.");
@@ -96,16 +113,6 @@ public class Main {
         } while (waitingForValidOperation);
         return operation;
 
-    }
-
-    /**
-     * get the java version that is running the current program
-     *
-     * @return string containing the java version running the current program
-     */
-    private static String getJavaVersion() {
-        Runtime.Version runTimeVersion = Runtime.version();
-        return String.format("%s.%s.%s.%s", runTimeVersion.feature(), runTimeVersion.interim(), runTimeVersion.update(), runTimeVersion.patch());
     }
 
 }
