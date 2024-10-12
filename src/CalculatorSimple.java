@@ -31,6 +31,7 @@ public class CalculatorSimple
      * @return true if the answer is yes; false otherwise.
      */
     private static boolean askYesNoQuestion(String question) {
+//        return true;
         System.out.print(question);
         String answer = kb.nextLine();
         if (answer.isEmpty()) return false;
